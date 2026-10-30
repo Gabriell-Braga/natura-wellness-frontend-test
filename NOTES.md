@@ -48,3 +48,24 @@ Decisions and assumptions. No libraries were added.
   - At 320px the button moves under the quantity box, because the text no longer fits beside it.
 - **Global styles:** `body:has(.bb-page)` removes the default body margin and sets the page background only while the buy box is shown. App and Part A are unchanged.
 - **Libraries:** none were added. The measuring and checking scripts (Python/Pillow, plus a Node script using the Chrome DevTools protocol) live outside the repo.
+
+## Not verified (by the AI)
+
+This is the list the AI gave at the end of Part B, copied as it was.
+
+- Browsers: only Chrome. Safari and Firefox weren't tested; font rendering differs, and Firefox needs version 121+ for :has().
+- Assistive tech and devices: no real screen reader or touch device. I only checked roles, labels and sizes in the page.
+- States with no reference: one-time selected, hover, focus rings and the open dropdown are my own design choices.
+- Breakpoint risk: in a real 1200px window with a visible scrollbar, the page is about 1185px wide, which is under the 1200px breakpoint, so it shows the stacked layout. That only happens when the page needs a scrollbar, which needs a window shorter than about 810px. If you'd like the two-column layout to stay down to around 1024px, with a flexible right column, tell me and I'll change it.
+
+I covered some of these points myself afterwards (see "Manual testing by me").
+
+## Manual testing by me
+
+- **Firefox:** everything looked and worked normally.
+- **Edge:** everything looked and worked normally.
+- **Phone (Samsung Galaxy S25 FE, in its browser):** everything looked and worked normally.
+- **Screen reader (Screen Reader for Chrome extension):** everything was announced normally.
+- **Not tested:** Safari.
+
+Nothing looked off. The project is small, so there was not much that could go wrong.
