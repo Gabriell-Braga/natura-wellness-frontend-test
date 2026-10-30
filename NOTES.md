@@ -64,7 +64,7 @@ I covered some of these points myself afterwards (see "Manual testing by me").
 
 - **Firefox:** everything looked and worked normally.
 - **Edge:** everything looked and worked normally.
-- **Phone (Samsung Galaxy S25 FE, in its browser):** everything looked and worked normally.
+- **Phone (Samsung Galaxy S25 FE, in Chrome):** everything looked and worked normally.
 - **Screen reader (Screen Reader for Chrome extension):** everything was announced normally.
 - **Not tested:** Safari.
 
