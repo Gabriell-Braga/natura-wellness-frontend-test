@@ -1,0 +1,250 @@
+.sub-card {
+  --green: #1d4634;
+  --text: #1f2a24;
+  --muted: #5d6862;
+  --border: #e4ded3;
+  --surface: #faf7f2;
+
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  max-width: 480px;
+  margin: 16px auto;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.sub-card p {
+  margin: 0;
+}
+
+.sub-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sub-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.sub-muted {
+  margin-top: 4px !important;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.sub-badge {
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.sub-badge--active {
+  background: #e3efe8;
+  color: var(--green);
+}
+.sub-badge--paused {
+  background: #fbf0d6;
+  color: #7a5a12;
+}
+.sub-badge--cancelled {
+  background: #eceae6;
+  color: #55524d;
+}
+
+.sub-label {
+  margin-top: 20px !important;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sub-next {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--surface);
+}
+.sub-next .sub-label {
+  margin-top: 0 !important;
+}
+.sub-next-date {
+  margin-top: 4px !important;
+  font-size: 18px;
+  font-weight: 600;
+}
+.sub-next-amount {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--green);
+}
+
+.sub-status-summary {
+  margin-top: 16px !important;
+  padding: 16px;
+  border-radius: 12px;
+  background: #f3f2ef;
+  color: var(--muted);
+}
+
+.sub-items {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.sub-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+}
+.sub-item + .sub-item {
+  border-top: 1px solid var(--border);
+}
+.sub-item-image {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: var(--surface);
+}
+.sub-item-image--placeholder {
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-weight: 600;
+}
+.sub-item-name {
+  flex: 1;
+}
+.sub-item-qty {
+  color: var(--muted);
+  font-weight: 600;
+}
+/* Inactive subscriptions should not look like active ones. */
+.sub-card--paused .sub-item-image,
+.sub-card--cancelled .sub-item-image {
+  opacity: 0.6;
+}
+
+.sub-notice-region:not(:empty) {
+  margin-top: 16px;
+}
+.sub-notice {
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+.sub-notice--success {
+  background: #e3efe8;
+  color: #17392a;
+}
+.sub-notice--warning {
+  margin-top: 16px !important;
+  background: #fbf0d6;
+  color: #5c440d;
+}
+.sub-notice-region .sub-notice--warning {
+  margin-top: 0 !important;
+}
+
+.sub-confirm {
+  margin-top: 16px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+}
+.sub-confirm-title {
+  margin-bottom: 4px !important;
+  font-weight: 600;
+}
+
+.sub-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.sub-btn {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 48px;
+  margin-top: 16px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sub-actions .sub-btn {
+  margin-top: 0;
+}
+.sub-btn--primary {
+  border: 1px solid var(--green);
+  background: var(--green);
+  color: #fff;
+}
+.sub-btn--secondary {
+  border: 1px solid var(--green);
+  background: #fff;
+  color: var(--green);
+}
+.sub-btn:disabled {
+  cursor: progress;
+  opacity: 0.6;
+}
+.sub-btn:focus-visible {
+  outline: 3px solid #8fb8a3;
+  outline-offset: 2px;
+}
+
+@media (min-width: 480px) {
+  .sub-actions {
+    flex-direction: row;
+  }
+}
+
+.sub-skeleton {
+  height: 56px;
+  margin-top: 12px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #f1eee8 25%, #f8f6f2 50%, #f1eee8 75%) 0 0 / 200% 100%;
+  animation: sub-shimmer 1.2s linear infinite;
+}
+.sub-skeleton--tall {
+  height: 96px;
+  margin-top: 16px;
+}
+@keyframes sub-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sub-skeleton {
+    animation: none;
+  }
+}
+
+.sub-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
