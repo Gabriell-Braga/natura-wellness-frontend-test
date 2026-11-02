@@ -21,6 +21,9 @@ npm install
 npm run dev        # http://localhost:5173
 npm run typecheck
 npm run build
+npm test           # unit tests (Vitest)
+npx playwright install chromium firefox   # once
+npm run test:e2e   # browser tests (Playwright, Chromium and Firefox)
 ```
 
 - Part A: `/?part=a&fixture=active`. Also try `paused`, `cancelled`, `error`, `&conflict=always` and `&conflict=never`.
@@ -40,7 +43,7 @@ npm run build
   - Working radio group, frequency select and quantity stepper. The button price and the fine print update with the selection.
   - Stacks into one column below 1200px, with no horizontal scroll at 375px or 320px.
 
-No libraries were added. Plain CSS, one file per part.
+No runtime libraries were added. Plain CSS, one file per part. Vitest, Testing Library and Playwright were added as dev dependencies for the Part B tests.
 
 ### Assumptions
 

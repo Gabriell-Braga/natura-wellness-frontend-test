@@ -1,6 +1,6 @@
 # Notes
 
-Decisions and assumptions. No libraries were added.
+Decisions and assumptions. No runtime libraries were added; the test tools are dev dependencies only.
 
 ## Part A: subscription card
 
@@ -47,7 +47,7 @@ Decisions and assumptions. No libraries were added.
   - Checked at 375px and 320px with quantity 10 (the longest button text): no horizontal scroll.
   - At 320px the button moves under the quantity box, because the text no longer fits beside it.
 - **Global styles:** `body:has(.bb-page)` removes the default body margin and sets the page background only while the buy box is shown. App and Part A are unchanged.
-- **Libraries:** none were added. The measuring and checking scripts (Python/Pillow, plus a Node script using the Chrome DevTools protocol) live outside the repo.
+- **Libraries:** none were added at runtime. The measuring and checking scripts (Python/Pillow, plus a Node script using the Chrome DevTools protocol) live outside the repo.
 
 ## Not verified (by the AI)
 
@@ -66,6 +66,20 @@ I covered some of these points myself afterwards (see "Manual testing by me").
 - **Edge:** everything looked and worked normally.
 - **Phone (Samsung Galaxy S25 FE, in Chrome):** everything looked and worked normally.
 - **Screen reader (Screen Reader for Chrome extension):** everything was announced normally.
+- **States with no reference:** I tested one-time selected, hover, keyboard focus rings and the open dropdown by hand. All of them behaved correctly, with nothing unusual.
+- **Breakpoint risk:** I tested a 1200px window with a visible scrollbar by hand. The layout stayed correct, with nothing unusual.
 - **Not tested:** Safari.
 
-Nothing looked off. The project is small, so there was not much that could go wrong.
+Nothing looked off, and the app turned out great. It is a short project, though, so there was not much that could go wrong.
+
+## Automated tests
+
+Added afterwards to settle the two open points above ("States with no reference" and "Breakpoint risk"). Part B only.
+
+- **Unit (`npm test`, Vitest + Testing Library, `src/part-b/BuyBox.test.tsx`):** Subscribe is the default; one-time selected shows $29.95 and hides the frequency, perks and fine print; switching back restores them; the dropdown lists 30/60/90 days and the choice reaches the fine print without changing the price; quantity stays within 1–10 and multiplies the total for both plans.
+- **Browser (`npm run test:e2e`, Playwright, Chromium and Firefox, `e2e/buy-box.spec.ts`):**
+  - A 1200×700 window with a real (non-overlay) scrollbar keeps the two-column layout with no horizontal scroll. The AI's breakpoint concern was wrong: media queries measure the window including the scrollbar, so `max-width: 1199px` does not match, and the right column just shrinks by the scrollbar width. Firefox is skipped for this one case, because Playwright's Firefox only draws overlay scrollbars.
+  - 1200px with no scrollbar is two columns; 1199, 768, 375 and 320px stack with no horizontal scroll at quantity 10.
+  - One-time selected moves the green selected border; hover darkens the cart button; Tab shows a 2px focus ring on the radio group, select, quantity button and cart button; arrow keys switch the plan; every dropdown option can be chosen, and the select is 44px tall.
+- **Result:** 5 unit tests pass. 21 browser tests pass, 1 skipped (the Firefox scrollbar case above).
+- **Still not automated:** the open native dropdown list is drawn by the OS, so only its options and selection are tested, not how it looks. Safari is still not tested.
