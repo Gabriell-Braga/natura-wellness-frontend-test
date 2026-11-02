@@ -70,7 +70,7 @@ I covered some of these points myself afterwards (see "Manual testing by me").
 - **Breakpoint risk:** I tested a 1200px window with a visible scrollbar by hand. The layout stayed correct, with nothing unusual.
 - **Not tested:** Safari.
 
-Nothing looked off, and the app turned out great. It is a short project, though, so there was not much that could go wrong.
+Nothing looked off.
 
 ## Automated tests
 
